@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignalForge | Demo Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <nav class="top-nav">
+        <div class="nav-brand">
+          <span class="logo-dot"></span>
+          <span>SignalForge</span>
+        </div>
+        <div class="nav-links">
+          <span>Products</span>
+          <span>Community</span>
+          <span>Markets</span>
+          <span>Docs</span>
+        </div>
+        <div class="nav-actions">
+          <button class="ghost">Docs</button>
+          <button class="primary" id="startBtn">Start Agent</button>
+        </div>
+      </nav>
+
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Autonomous Trading Agent</p>
+          <h1>Where agents pay, trade, and report in real time.</h1>
+          <p class="subtitle">
+            SignalForge showcases x402 payments on Stellar Testnet with USDC,
+            paid signal access, and a live trade execution loop.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="startBtnHero">Start Agent</button>
+            <button class="ghost" id="stopBtn" disabled>Stop</button>
+          </div>
+          <div class="hero-meta">
+            <span>Live demo</span>
+            <span>USDC settlement</span>
+            <span>Stellar Testnet</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <span>SignalForge Live Terminal</span>
+            <span class="status-pill" id="statusPill">Ready</span>
+          </div>
+          <div class="live-row">
+            <span class="live-dot"></span>
+            <span>Streaming agent telemetry</span>
+          </div>
+          <div class="hero-log" id="logStream"></div>
+        </div>
+        <div class="hero-visual">
+          <div class="glow-frame">
+            <div class="glow-grid"></div>
+            <div class="glow-screen">
+              <div class="screen-header">
+                <span>Market Pulse</span>
+                <div class="screen-dots">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="screen-body">
+                <div class="sparkline"></div>
+                <div class="screen-metrics">
+                  <div>
+                    <p>Liquidity</p>
+                    <h5>$4.1M</h5>
+                  </div>
+                  <div>
+                    <p>Signals</p>
+                    <h5>128</h5>
+                  </div>
+                  <div>
+                    <p>Accuracy</p>
+                    <h5>78%</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="ticker">
+        <div class="ticker-track">
+          <span>LIVE</span>
+          <span>XLM/USDC</span>
+          <span>Testnet payments</span>
+          <span>x402 gating</span>
+          <span>Autonomous execution</span>
+          <span>Streaming decisions</span>
+        </div>
+      </section>
+
+      <section class="grid summary-grid" id="summaryGrid">
+        <div class="card summary-card">
+          <p class="eyebrow">Mode</p>
+          <h4 id="modeText">Live Demo</h4>
+          <p class="meta">Backend + Testnet</p>
+        </div>
+        <div class="card summary-card">
+          <p class="eyebrow">Signal Cost</p>
+          <h4 id="signalCost">$0.02 USDC</h4>
+          <p class="meta">x402 payment</p>
+        </div>
+        <div class="card summary-card">
+          <p class="eyebrow">Confidence Rule</p>
+          <h4 id="confidenceRule">≥ 60%</h4>
+          <p class="meta">auto-execute</p>
+        </div>
+        <div class="card summary-card">
+          <p class="eyebrow">Network</p>
+          <h4 id="networkText">Stellar Testnet</h4>
+          <p class="meta">USDC settlement</p>
+        </div>
+      </section>
+
+      <section class="grid main-grid hidden" id="detailsSection">
+        <div class="card">
+          <h3>Agent Decisions</h3>
+          <div class="metric">
+            <span>Decision</span>
+            <strong id="decisionText">Waiting</strong>
+          </div>
+          <div class="metric">
+            <span>Confidence</span>
+            <strong id="confidenceText">--</strong>
+          </div>
+          <div class="metric">
+            <span>Worth It?</span>
+            <strong id="worthText">--</strong>
+          </div>
+          <div class="divider"></div>
+          <div class="metric">
+            <span>Budget Remaining</span>
+            <strong id="budgetText">$10.00</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Payment Event</h3>
+          <p id="paymentStatus">Awaiting payment</p>
+          <p class="meta" id="paymentTx">Tx: --</p>
+          <div class="action-row">
+            <button id="copyHashBtn" class="copy-btn" type="button" disabled>
+              Copy tx hash
+            </button>
+            <a id="paymentLink" class="link" target="_blank" rel="noreferrer"></a>
+          </div>
+          <div class="address-block">
+            <p class="meta">Payer</p>
+            <p id="payerAddress" class="address">--</p>
+            <p class="meta">Receiver</p>
+            <p id="receiverAddress" class="address">--</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Trade Execution</h3>
+          <p id="tradeStatus">Awaiting signal</p>
+          <p class="pnl" id="pnlText">P&L: $0.00</p>
+          <div class="divider"></div>
+          <p class="meta">Last trade size</p>
+          <p id="tradeSize" class="trade-size">-- XLM</p>
+        </div>
+
+        <div class="card wide">
+          <h3>Agent Status</h3>
+          <div class="log-stream" id="logStreamClone"></div>
+        </div>
+      </section>
+
+      <div class="footer-badge">
+        <span>Powered by Stellar Testnet • x402 payments</span>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
