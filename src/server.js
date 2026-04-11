@@ -118,3 +118,13 @@ app.post("/demo/run-agent", async (req, res) => {
 app.listen(config.port, () => {
   logger.info(`Signal server listening on http://localhost:${config.port}`);
 });
+const logger = createLogger("Server");
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
