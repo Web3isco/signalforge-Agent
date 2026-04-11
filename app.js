@@ -139,6 +139,10 @@ async function runDemo() {
 }
 
 function resolveBackendBase() {
+  if (window.SIGNALFORGE_BACKEND) {
+    return window.SIGNALFORGE_BACKEND.replace(/\/$/, "");
+  }
+
   if (window.location.origin.includes("localhost:3002")) {
     return window.location.origin;
   }
